@@ -1,0 +1,12 @@
+--- diag-ether/Makefile~	2002-08-02 00:00:00.000000000 +0000
++++ diag-ether/Makefile	2004-02-22 22:11:18.000000000 +0000
+@@ -16,7 +16,8 @@
+ # Diagnostics that can use libmii.
+ MDIAGS=alta-diag eepro100-diag epic-diag myson-diag\
+    natsemi-diag ns820-diag pcnet-diag rtl8139-diag starfire-diag tulip-diag \
+-   via-diag vortex-diag winbond-diag yellowfin-diag
++   vortex-diag winbond-diag yellowfin-diag
++#via-diag
+ # Note: hamachi-diag and intel1000-diag require a kernel mechanism to map
+ # PCI memory regions into user-level diagnostics, and thus are not distributed.
+ 

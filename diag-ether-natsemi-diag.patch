@@ -1,0 +1,87 @@
+--- diag-ether/natsemi-diag.c.org	2004-02-22 21:40:26.000000000 +0000
++++ diag-ether/natsemi-diag.c	2004-02-22 21:43:40.000000000 +0000
+@@ -37,41 +37,41 @@
+ "  For details and other options see http://www.scyld.com/diag/index.html\n";
+ 
+ static const char long_usage_msg[] =
+-"Usage: %s [-aDfrRvVw] [-AF <speed+duplex>] [-#<BoardNum>]
++"Usage: %s [-aDfrRvVw] [-AF <speed+duplex>] [-#<BoardNum>]\n"
++"\n"
++"   Show the internal state of a network adapter.\n"
++"\n"
++"   The common usage is\n"
++"      natsemi-diag -aem\n"
++"\n"
++" Frequently used options are\n"
++"   -a  --show_all_registers	Print all registers.\n"
++"   -e  --show-eeprom	Dump EEPROM contents, \"-ee\" shows the details.\n"
++"   -m  --show_mii		Print the MII transceiver state\n"
++"					Using -mm monitors the link.\n"
++"   -f  --force		Perform operation, even on a running NIC.\n"
++"\n"
++" To operate on a single NIC, or one that hasn't been automatically found:\n"
++"   -#  --card_num	INDEX	Operate on the specified card index.\n"
++"   -p  --port-base	IOADDR	Assume an adapter at the specified I/O address.\n"
++"   -t  --chip-type	TYPE	Specify adapter type with '-p', use '-1' to list.\n"
++"\n"
++" To change the persistent EEPROM settings\n"
++"   -G  --parameters PARMS	Set adapter-specific parameters.\n"
++"   -H  --new-hwaddr 01:23:45:67:ab:cd\n"
++"			Set a new hardware station address.  Typically diabled, \n"
++"   -w  --write-EEPROM	 Actually write the new settings into the EEPROM.\n"
++" To read and write the boot BIOS extension Flash ROM\n"
++"   -B       Show the first few bytes of the ROM\n"
++"   -L FILE  Load the Flash from FILE.\n"
++"   -S FILE  Store the Flash image to FILE.\n"
++"\n"
++"   -D  --debug\n"
++"   -v  --verbose	Report each action taken.\n"
++"   -V  --version	Emit version information.\n"
++"\n"
++"   -A  --advertise <speed|setting>  (See the mii-diag manual page.)\n";
+ 
+-   Show the internal state of a network adapter.
+-
+-   The common usage is
+-      natsemi-diag -aem
+-
+- Frequently used options are
+-   -a  --show_all_registers	Print all registers.
+-   -e  --show-eeprom	Dump EEPROM contents, \"-ee\" shows the details.
+-   -m  --show_mii		Print the MII transceiver state
+-					Using -mm monitors the link.
+-   -f  --force		Perform operation, even on a running NIC.
+-
+- To operate on a single NIC, or one that hasn't been automatically found:
+-   -#  --card_num	INDEX	Operate on the specified card index.
+-   -p  --port-base	IOADDR	Assume an adapter at the specified I/O address.
+-   -t  --chip-type	TYPE	Specify adapter type with '-p', use '-1' to list.
+-
+- To change the persistent EEPROM settings
+-   -G  --parameters PARMS	Set adapter-specific parameters.
+-   -H  --new-hwaddr 01:23:45:67:ab:cd
+-			Set a new hardware station address.  Typically diabled, 
+-   -w  --write-EEPROM	 Actually write the new settings into the EEPROM.
+- To read and write the boot BIOS extension Flash ROM
+-   -B       Show the first few bytes of the ROM
+-   -L FILE  Load the Flash from FILE.
+-   -S FILE  Store the Flash image to FILE.
+-
+-   -D  --debug
+-   -v  --verbose	Report each action taken.
+-   -V  --version	Emit version information.
+-
+-   -A  --advertise <speed|setting>  (See the mii-diag manual page.)
+-";
+ 
+ #if ! defined(__OPTIMIZE__)
+ #warning  You must compile this program with the correct options!
+@@ -90,7 +90,7 @@
+ 
+ /* The following are required only with unaligned field accesses. */
+ #include <asm/types.h>
+-#include <asm/unaligned.h>
++//#include <asm/unaligned.h>
+ 
+ #if defined(__linux__)  &&  __GNU_LIBRARY__ == 1
+ #include <asm/io.h>			/* Newer libraries use <sys/io.h> instead. */

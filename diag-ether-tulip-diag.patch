@@ -1,0 +1,11 @@
+--- diag-ether/tulip-diag.c.org	2004-02-22 21:55:34.000000000 +0000
++++ diag-ether/tulip-diag.c	2004-02-22 22:01:59.000000000 +0000
+@@ -91,7 +91,7 @@
+ #include <ctype.h>
+ 
+ #include <asm/types.h>
+-#include <asm/unaligned.h>
++#define get_unaligned(ptr) (*(ptr))
+ 
+ #if defined(__linux__)  &&  __GNU_LIBRARY__ == 1
+ #include <asm/io.h>			/* Newer libraries use <sys/io.h> instead. */

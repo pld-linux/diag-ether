@@ -1,0 +1,11 @@
+--- diag-ether/pcnet-diag.c.org	2004-02-22 21:49:17.000000000 +0000
++++ diag-ether/pcnet-diag.c	2004-02-22 21:49:32.000000000 +0000
+@@ -47,7 +47,7 @@
+ #include <errno.h>
+ 
+ #include <asm/types.h>
+-#include <asm/unaligned.h>
++//#include <asm/unaligned.h>
+ 
+ #if defined(__linux__)  &&  __GNU_LIBRARY__ == 1
+ #include <asm/io.h>

@@ -1,0 +1,62 @@
+--- diag-ether/pci-config.c.org	2004-02-22 22:13:59.000000000 +0000
++++ diag-ether/pci-config.c	2004-02-22 22:15:14.000000000 +0000
+@@ -28,33 +28,32 @@
+ static char *usage_msg =
+ "Usage: pci-config [-aDfSvVW] [-# <device_index>]\n";
+ 
+-static char *long_usage_msg ="
+-
+-  This program shows the contents of PCI configuration space.
+-  It reads the hardware registers, and thus must be run as 'root'.
+-
+-  Running this program with no options shows the installed PCI devices.
+-  Each line is prefixed by its index which may be used with -#<index>
+-  e.g. \"pci-config -#3\" to specify the device to operate on.
+-
+-  Commonly use options are
+-  -# <device-index>         Operate only on DEVICE-INDEX e.g  -#3
+-
+-  The operations on the selected device are
+-  -a  --show-addresses   Show PCI address registers.
+-  -S --sleep             Put device to sleep (ACPI D3 state)
+-  -W --wake              Wake a sleeping device (ACPI D0 state)
+-
+-  Less commonly used options are
+-  -B <bus>  --bus <bus>      Show only devices on BUS.
+-  -A <addr> --set-addresses  Set PCI address register 1 to the ADDR.
+-  -D  --debug                Show details of operations
+-  -f  --force                Override checks and perform the operation
+-  -u  --usage                Show this long usage message
+-  -v  --verbose              Verbose mode
+-  -V  --version              Display this program's version information
+-
+-";
++static char *long_usage_msg =
++"\n"
++"  This program shows the contents of PCI configuration space.\n"
++"  It reads the hardware registers, and thus must be run as 'root'.\n"
++"\n"
++"  Running this program with no options shows the installed PCI devices.\n"
++"  Each line is prefixed by its index which may be used with -#<index>\n"
++"  e.g. \"pci-config -#3\" to specify the device to operate on.\n"
++"\n"
++"  Commonly use options are\n"
++"  -# <device-index>         Operate only on DEVICE-INDEX e.g  -#3\n"
++"\n"
++"  The operations on the selected device are\n"
++"  -a  --show-addresses   Show PCI address registers.\n"
++"  -S --sleep             Put device to sleep (ACPI D3 state)\n"
++"  -W --wake              Wake a sleeping device (ACPI D0 state)\n"
++"\n"
++"  Less commonly used options are\n"
++"  -B <bus>  --bus <bus>      Show only devices on BUS.\n"
++"  -A <addr> --set-addresses  Set PCI address register 1 to the ADDR.\n"
++"  -D  --debug                Show details of operations\n"
++"  -f  --force                Override checks and perform the operation\n"
++"  -u  --usage                Show this long usage message\n"
++"  -v  --verbose              Verbose mode\n"
++"  -V  --version              Display this program's version information\n"
++"\n";
+ 
+ #include <unistd.h>
+ #include <stdio.h>

@@ -1,0 +1,62 @@
+--- diag-ether/ne2k-pci-diag.c.bak	2004-02-22 21:11:23.000000000 +0000
++++ diag-ether/ne2k-pci-diag.c	2004-02-22 21:14:39.000000000 +0000
+@@ -767,35 +767,34 @@
+ 		   p[23] & 8 ? "no link beat required" : "autoselect by link beat",
+ 		   winbond_rom[p[23]>>5]);
+ 	if (ee_data[9] ==  0x8c4a)
+-		printf("
+-This board has bogus information written into the configuration EEPROM.
+-The configuration table is for a Realtek chip, but this board is using
+-a Winbond 89c940 chip.  This misprogramming usually results in an invalid
+-station address, and prevents the board from being detected by standard
+-drivers.
+-
+-To reprogram the configuration EEPROM select a new station address such as
+-40:00:00:12:34:56 and run this diagnostic with the options
+-    --write-EEPROM --emergency-rewrite --new-hwaddr 40:00:00:12:34:56
+-");
++		printf(
++"This board has bogus information written into the configuration EEPROM.\n"
++"The configuration table is for a Realtek chip, but this board is using\n"
++"a Winbond 89c940 chip.  This misprogramming usually results in an invalid\n"
++"station address, and prevents the board from being detected by standard\n"
++"drivers.\n"
++"\n"
++"To reprogram the configuration EEPROM select a new station address such as\n"
++"40:00:00:12:34:56 and run this diagnostic with the options\n"
++"    --write-EEPROM --emergency-rewrite --new-hwaddr 40:00:00:12:34:56\n"
++);
+ 			   
+ 	return;
+ }
+ 
+-static char unknown_eeprom_message[] = "
+- No information is known about how to read or write the configuration
+- EEPROM of this NIC board.  It is likely that this NIC is using a common
+- chip with a unique PCI ID.  It may be possible to read the EEPROM by
+- explicitly specifying the chip type and I/O address:
+-   ne2k-pci-diag -t 1 -p <ioaddr>	# For Realtek rtl8029 chip
+-   ne2k-pci-diag -t 2 -p <ioaddr>	# For Winbond 89C940 chip
+-   ne2k-pci-diag -t 3 -p <ioaddr>	# For Holtek HT80229 chip
+- If one of these is required, please send a report to becker@scyld.com.
+-";
+-static char no_rewrite_msg[] = "
+-*** Emergency EEPROM rewrite is not yet available for this chip type.
+- ** See the Scyld diagnostic web page for updates and more information.
+- ** http://www.scyld.com/diag/index.html";
++static char unknown_eeprom_message[] = 
++" No information is known about how to read or write the configuration\n"
++" EEPROM of this NIC board.  It is likely that this NIC is using a common\n"
++" chip with a unique PCI ID.  It may be possible to read the EEPROM by\n"
++" explicitly specifying the chip type and I/O address:\n"
++"   ne2k-pci-diag -t 1 -p <ioaddr>	# For Realtek rtl8029 chip\n"
++"   ne2k-pci-diag -t 2 -p <ioaddr>	# For Winbond 89C940 chip\n"
++"   ne2k-pci-diag -t 3 -p <ioaddr>	# For Holtek HT80229 chip\n"
++" If one of these is required, please send a report to becker@scyld.com.\n" ;
++static char no_rewrite_msg[] = 
++"*** Emergency EEPROM rewrite is not yet available for this chip type.\n"
++" ** See the Scyld diagnostic web page for updates and more information.\n"
++" ** http://www.scyld.com/diag/index.html";
+ 
+ /* The examples below have 00:11:22:33:44:55 as the station address. */
+ static unsigned short winbond_default_eeprom[] = {

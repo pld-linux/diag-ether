@@ -10,21 +10,21 @@ Group:		Networking/Admin
 # Manually packaged using sources at: ftp://www.scyld.com/pub/diag/
 Source0:	%{name}-%{version}.tar.bz2
 # Source0-md5:	d583860be20e9efc20487ff416f1f8b6
-Patch0:         %{name}-alta-diag.patch
-Patch1:         %{name}-diag-example.patch
-Patch2:         %{name}-eepro100-diag.patch
-Patch3:         %{name}-mii-diag.patch
-Patch4:         %{name}-natsemi-diag.patch
-Patch5:         %{name}-ne2k-pci.patch
-Patch6:         %{name}-ns820-diag.patch
-Patch7:         %{name}-pci-config.patch
-Patch8:         %{name}-pcnet-diag.patch
-Patch9:         %{name}-rtl8139-diag.patch
-Patch10:        %{name}-tulip-diag.patch
-Patch11:        %{name}-winbond-diag.patch
-Patch12:        %{name}-ether-wake.patch
-Patch13:        %{name}-myson-diag.patch
-Patch14:        %{name}-novia-diag.patch
+Patch0:		%{name}-alta-diag.patch
+Patch1:		%{name}-diag-example.patch
+Patch2:		%{name}-eepro100-diag.patch
+Patch3:		%{name}-mii-diag.patch
+Patch4:		%{name}-natsemi-diag.patch
+Patch5:		%{name}-ne2k-pci.patch
+Patch6:		%{name}-ns820-diag.patch
+Patch7:		%{name}-pci-config.patch
+Patch8:		%{name}-pcnet-diag.patch
+Patch9:		%{name}-rtl8139-diag.patch
+Patch10:	%{name}-tulip-diag.patch
+Patch11:	%{name}-winbond-diag.patch
+Patch12:	%{name}-ether-wake.patch
+Patch13:	%{name}-myson-diag.patch
+Patch14:	%{name}-novia-diag.patch
 
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 

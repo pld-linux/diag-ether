@@ -9,6 +9,7 @@ License:	GPL
 Group:		Networking/Admin
 # Manually packaged using sources at: ftp://www.scyld.com/pub/diag/
 Source0:	%{name}-%{version}.tar.bz2
+# Source0-md5:	9725293e341f131b994df33ee9b48123
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description

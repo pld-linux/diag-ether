@@ -34,7 +34,7 @@ adapters supported by Linux.
 
 %description -l pl
 Narzêdzia diagnostyczne i konfiguracyjne dla najbardziej popularnych
-kart Ethernet pracuj±cych pod Linuxem.
+kart Ethernet pracuj±cych pod Linuksem.
 
 %prep
 %setup -q -n %{name}

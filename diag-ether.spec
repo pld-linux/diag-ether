@@ -7,8 +7,6 @@ Release:	1
 Vendor:		Donald Becker <becker@scyld.com>
 License:	GPL
 Group:		Networking/Admin
-Group(de):	Netzwerkwesen/Administration
-Group(pl):	Sieciowe/Administracyjne
 # Manually packaged using sources at: ftp://www.scyld.com/pub/diag/
 Source0:	%{name}-%{version}.tar.gz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)

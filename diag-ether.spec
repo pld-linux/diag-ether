@@ -1,5 +1,5 @@
-Summary:	Diagnostic program for Ethernet adapters under Linux.
-Summary(pl):	Programy diagnostyczne dla kart sieciowych.
+Summary:	Diagnostic program for Ethernet adapters under Linux
+Summary(pl):	Programy diagnostyczne dla kart sieciowych
 Name:		diag-ether
 # Version is last update date: yyyymmdd
 Version:	20010318
@@ -7,6 +7,7 @@ Release:	1
 Vendor:		Donald Becker <becker@scyld.com>
 License:	GPL
 Group:		Networking/Admin
+Group(de):	Netzwerkwesen/Administration
 Group(pl):	Sieciowe/Administracyjne
 # Manually packaged using sources at: ftp://www.scyld.com/pub/diag/
 Source0:	%{name}-%{version}.tar.gz
@@ -23,7 +24,7 @@ kart Ethernet pracuj±cych pod Linuxem.
 %setup -q -n %{name}
 
 %build
-%{__make} CFLAGS="%{!?debug:$RPM_OPT_FLAGS}%{?debug:-g -O0}"
+%{__make} CFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT

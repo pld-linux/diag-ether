@@ -12,7 +12,8 @@ Source0:	%{name}-%{version}.tar.gz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
-Diagnostic and configuration programs for most common Ethernet adapters                             supported by Linux.
+Diagnostic and configuration programs for most common Ethernet
+adapters supported by Linux.
 
 %description -l pl
 Narzêdzia diagnostyczne i konfiguracyjne dla najbardziej popularnych

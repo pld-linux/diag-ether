@@ -24,7 +24,7 @@ kart Ethernet pracuj±cych pod Linuxem.
 %setup -q -n %{name}
 
 %build
-%{__make} CFLAGS="%{rpmcflags}"
+%{__make} CC="%{__cc}" CFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT

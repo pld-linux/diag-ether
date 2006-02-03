@@ -25,7 +25,6 @@ Patch11:	%{name}-winbond-diag.patch
 Patch12:	%{name}-ether-wake.patch
 Patch13:	%{name}-myson-diag.patch
 Patch14:	%{name}-novia-diag.patch
-
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -56,7 +55,9 @@ kart Ethernet pracuj±cych pod Linuksem.
 %patch14 -p1
 
 %build
-%{__make} CC="%{__cc}" CFLAGS="%{rpmcflags}"
+%{__make} \
+	CC="%{__cc}" \
+	CFLAGS="%{rpmcflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -75,4 +76,4 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_sbindir}/*
-%attr(644,root,root) %{_mandir}/man8/*
+%{_mandir}/man8/*

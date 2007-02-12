@@ -1,5 +1,5 @@
 Summary:	Diagnostic program for Ethernet adapters under Linux
-Summary(pl):	Programy diagnostyczne dla kart sieciowych
+Summary(pl.UTF-8):   Programy diagnostyczne dla kart sieciowych
 Name:		diag-ether
 # Version is last update date: yyyymmdd
 Version:	20031219
@@ -31,9 +31,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Diagnostic and configuration programs for most common Ethernet
 adapters supported by Linux.
 
-%description -l pl
-Narzêdzia diagnostyczne i konfiguracyjne dla najbardziej popularnych
-kart Ethernet pracuj±cych pod Linuksem.
+%description -l pl.UTF-8
+NarzÄ™dzia diagnostyczne i konfiguracyjne dla najbardziej popularnych
+kart Ethernet pracujÄ…cych pod Linuksem.
 
 %prep
 %setup -q -n %{name}

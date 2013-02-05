@@ -25,6 +25,7 @@ Patch11:	%{name}-winbond-diag.patch
 Patch12:	%{name}-ether-wake.patch
 Patch13:	%{name}-myson-diag.patch
 Patch14:	%{name}-novia-diag.patch
+Patch15:	%{name}-format-security.patch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -53,6 +54,7 @@ kart Ethernet pracujących pod Linuksem.
 %patch13 -p1
 # TODO: fix via-diag and remove patch14
 %patch14 -p1
+%patch15 -p1
 
 %build
 %{__make} \

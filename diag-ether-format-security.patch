@@ -1,0 +1,722 @@
+--- diag-ether/3c5x9setup.c.formatsec	2013-02-05 18:41:15.238041747 +0100
++++ diag-ether/3c5x9setup.c	2013-02-05 18:42:20.777685898 +0100
+@@ -238,12 +238,12 @@ main(int argc, char **argv)
+ 			errflag++;
+ 		}
+ 	if (errflag) {
+-		fprintf(stderr, usage_msg);
++		fputs(usage_msg, stderr);
+ 		return 3;
+ 	}
+ 
+ 	if (verbose || show_version)
+-		printf(version_msg);
++		fputs(version_msg, stdout);
+ 
+ 	if (ioperm(port_base, 16, 1) < 0) {
+ 		perror("3c5x9setup: ioperm()");
+@@ -286,7 +286,7 @@ main(int argc, char **argv)
+ 		if (last_intr != 255)
+ 			printf("  An interrupt occured only %d ticks ago!\n", last_intr);
+ 		if (saved_window & 0x00ff)
+-			printf(intrs_pending_msg);
++			fputs(intrs_pending_msg, stdout);
+ 		return 1;
+ 	}
+ 
+--- diag-ether/alta-diag.c.formatsec	2013-02-05 18:00:15.044098691 +0100
++++ diag-ether/alta-diag.c	2013-02-05 18:01:46.465660186 +0100
+@@ -234,12 +234,12 @@ main(int argc, char **argv)
+ 			errflag++;
+ 		}
+ 	if (errflag) {
+-		fprintf(stderr, usage_msg);
++		fputs(usage_msg, stderr);
+ 		return 3;
+ 	}
+ 
+ 	if (verbose || show_version)
+-		printf(version_msg);
++		fputs(version_msg, stdout);
+ 
+ 	if (chip_type < 0
+ 		|| chip_type >= sizeof(pcidev_tbl)/sizeof(pcidev_tbl[0]) - 1) {
+@@ -327,11 +327,11 @@ static int scan_proc_bus_pci(int card_nu
+ 					   card_cnt, pcidev_tbl[chip_idx].part_name,
+ 					   port_base);
+ 				if (irq == 0  || irq == 255)
+-					printf(bogus_irq);
++					fputs(bogus_irq, stdout);
+ 				if (port_base)
+ 					pcidev_tbl[chip_idx].diag_func(0,0,port_base, i);
+ 				else
+-					printf(bogus_iobase);
++					fputs(bogus_iobase, stdout);
+ 				break;
+ 			}
+ 		}
+@@ -415,7 +415,7 @@ static int scan_proc_pci(int card_num)
+ 							pcidev_tbl[chip_idx].diag_func
+ 								(vendor_id, device_id, port_base, chip_idx);
+ 						else
+-							printf(bogus_iobase);
++							fputs(bogus_iobase, stdout);
+ 					}
+ 				}
+ 			}
+--- diag-ether/diag-example.c.formatsec	2013-02-05 20:35:48.034672457 +0100
++++ diag-ether/diag-example.c	2013-02-05 20:36:45.577694053 +0100
+@@ -249,12 +249,12 @@ main(int argc, char **argv)
+ 			errflag++;
+ 		}
+ 	if (errflag) {
+-		fprintf(stderr, usage_msg);
++		fputs(usage_msg, stderr);
+ 		return 3;
+ 	}
+ 
+ 	if (verbose || show_version)
+-		printf(version_msg);
++		fputs(version_msg, stdout);
+ 
+ 	if (chip_type < 0
+ 		|| chip_type >= sizeof(pcidev_tbl)/sizeof(pcidev_tbl[0]) - 1) {
+@@ -342,11 +342,11 @@ static int scan_proc_bus_pci(int card_nu
+ 					   card_cnt, pcidev_tbl[chip_idx].part_name,
+ 					   port_base);
+ 				if (irq == 0  || irq == 255)
+-					printf(bogus_irq);
++					fputs(bogus_irq, stdout);
+ 				if (port_base)
+ 					pcidev_tbl[chip_idx].diag_func(0,0,port_base, i);
+ 				else
+-					printf(bogus_iobase);
++					fputs(bogus_iobase, stdout);
+ 				break;
+ 			}
+ 		}
+@@ -430,7 +430,7 @@ static int scan_proc_pci(int card_num)
+ 							pcidev_tbl[chip_idx].diag_func
+ 								(vendor_id, device_id, port_base, chip_idx);
+ 						else
+-							printf(bogus_iobase);
++							fputs(bogus_iobase, stdout);
+ 					}
+ 				}
+ 			}
+--- diag-ether/eepro100-diag.c.formatsec	2013-02-05 18:02:06.528911548 +0100
++++ diag-ether/eepro100-diag.c	2013-02-05 18:04:36.599952001 +0100
+@@ -249,12 +249,12 @@ main(int argc, char **argv)
+ 			errflag++;
+ 		}
+ 	if (errflag) {
+-		fprintf(stderr, usage_msg);
++		fputs(usage_msg, stderr);
+ 		return 3;
+ 	}
+ 
+ 	if (verbose || show_version)
+-		printf(version_msg);
++		fputs(version_msg, stdout);
+ 
+ 	if (chip_type < 0
+ 		|| chip_type >= sizeof(pcidev_tbl)/sizeof(pcidev_tbl[0]) - 1) {
+@@ -342,11 +342,11 @@ static int scan_proc_bus_pci(int card_nu
+ 					   card_cnt, pcidev_tbl[chip_idx].part_name,
+ 					   port_base);
+ 				if (irq == 0  || irq == 255)
+-					printf(bogus_irq);
++					fputs(bogus_irq, stdout);
+ 				if (port_base)
+ 					pcidev_tbl[chip_idx].diag_func(0,0,port_base, i);
+ 				else
+-					printf(bogus_iobase);
++					fputs(bogus_iobase, stdout);
+ 				break;
+ 			}
+ 		}
+@@ -430,7 +430,7 @@ static int scan_proc_pci(int card_num)
+ 							pcidev_tbl[chip_idx].diag_func
+ 								(vendor_id, device_id, port_base, chip_idx);
+ 						else
+-							printf(bogus_iobase);
++							fputs(bogus_iobase, stdout);
+ 					}
+ 				}
+ 			}
+@@ -999,7 +999,7 @@ static void eepro100_eeprom(unsigned sho
+ 		   eeprom[8], eeprom[9]>>8, eeprom[9] & 0xff);
+ 	for (i = 0; i < 4; i++)
+ 		if (eeprom[5] & (1<<i))
+-			printf(connectors[i]);
++			fputs(connectors[i], stdout);
+ 	printf("\n  Primary interface chip %s PHY #%d.\n",
+ 		   phys[(eeprom[6]>>8)&7], phy0);
+ 	if (((eeprom[6]>>8) & 0x3f) == DP83840)
+@@ -1009,9 +1009,9 @@ static void eepro100_eeprom(unsigned sho
+ 		printf("    Secondary interface chip %s, PHY %d.\n",
+ 			   phys[(eeprom[7]>>8)&7], phy1);
+ 	if (eeprom[6] == 0)
+-		printf(no_xcvr_msg);
++		fputs(no_xcvr_msg, stdout);
+ 	if (eeprom[10] & 0x0002)
+-		printf(sleep_mode_msg);
++		fputs(sleep_mode_msg, stdout);
+ 
+ 	return;
+ }
+--- diag-ether/epic-diag.c.formatsec	2013-02-05 18:04:59.023163858 +0100
++++ diag-ether/epic-diag.c	2013-02-05 18:07:46.768921768 +0100
+@@ -190,12 +190,12 @@ main(int argc, char **argv)
+ 			errflag++;
+ 		}
+ 	if (errflag) {
+-		fprintf(stderr, usage_msg);
++		fputs(usage_msg, stderr);
+ 		return 3;
+ 	}
+ 
+ 	if (verbose || show_version)
+-		printf(version_msg);
++		fputs(version_msg, stdout);
+ 
+ 	if (chip_type < 0
+ 		|| chip_type >= sizeof(pcidev_tbl)/sizeof(pcidev_tbl[0]) - 1) {
+@@ -283,11 +283,11 @@ static int scan_proc_bus_pci(int card_nu
+ 					   card_cnt, pcidev_tbl[chip_idx].part_name,
+ 					   port_base);
+ 				if (irq == 0  || irq == 255)
+-					printf(bogus_irq);
++					fputs(bogus_irq, stdout);
+ 				if (port_base)
+ 					pcidev_tbl[chip_idx].diag_func(0,0,port_base, i);
+ 				else
+-					printf(bogus_iobase);
++					fputs(bogus_iobase, stdout);
+ 				break;
+ 			}
+ 		}
+@@ -371,7 +371,7 @@ static int scan_proc_pci(int card_num)
+ 							pcidev_tbl[chip_idx].diag_func
+ 								(vendor_id, device_id, port_base, chip_idx);
+ 						else
+-							printf(bogus_iobase);
++							fputs(bogus_iobase, stdout);
+ 					}
+ 				}
+ 			}
+--- diag-ether/ether-wake.c.formatsec	2013-02-05 17:52:35.916585998 +0100
++++ diag-ether/ether-wake.c	2013-02-05 17:54:39.669248906 +0100
+@@ -135,7 +135,7 @@ int main(int argc, char *argv[])
+ 		case 'D': debug++;			break;
+ 		case 'i': ifname = optarg;	break;
+ 		case 'p': get_wol_pw(optarg); break;
+-		case 'u': printf(usage_msg); return 0;
++		case 'u': fputs(usage_msg, stdout); return 0;
+ 		case 'v': verbose++;		break;
+ 		case 'V': do_version++;		break;
+ 		case '?':
+@@ -144,7 +144,7 @@ int main(int argc, char *argv[])
+ 	if (verbose || do_version)
+ 		printf("%s\n", version_msg);
+ 	if (errflag) {
+-		fprintf(stderr, brief_usage_msg);
++		fputs(brief_usage_msg, stderr);
+ 		return 3;
+ 	}
+ 
+--- diag-ether/mii-diag.c.formatsec	2013-02-05 18:49:13.532116482 +0100
++++ diag-ether/mii-diag.c	2013-02-05 20:35:21.244817590 +0100
+@@ -205,7 +205,7 @@ main(int argc, char **argv)
+ 	}
+ 
+ 	if (verbose || opt_version)
+-		printf(version);
++		fputs(version, stdout);
+ 
+ 	/* Open a basic socket. */
+ 	if ((skfd = socket(AF_INET, SOCK_DGRAM,0)) < 0) {
+@@ -533,7 +533,7 @@ int show_basic_mii(long ioaddr, int phy_
+ 			   bmcr & 0x0100 ? "full":"half");
+ 	for (i = 0; i < 9; i++)
+ 		if (bmcr & (0x0080<<i))
+-			printf(bmcr_bits[i]);
++			fputs(bmcr_bits[i], stdout);
+ 
+ 	new_bmsr = mdio_read(ioaddr, phy_id, 1);
+ 	if ((bmsr & 0x0016) == 0x0004)
+--- diag-ether/myson-diag.c.formatsec	2013-02-05 18:28:03.025666073 +0100
++++ diag-ether/myson-diag.c	2013-02-05 18:38:40.142214516 +0100
+@@ -238,12 +238,12 @@ main(int argc, char **argv)
+ 			errflag++;
+ 		}
+ 	if (errflag) {
+-		fprintf(stderr, usage_msg);
++		fputs(usage_msg, stderr);
+ 		return 3;
+ 	}
+ 
+ 	if (verbose || show_version)
+-		printf(version_msg);
++		fputs(version_msg, stdout);
+ 
+ 	if (chip_type < 0
+ 		|| chip_type >= sizeof(pcidev_tbl)/sizeof(pcidev_tbl[0]) - 1) {
+@@ -331,11 +331,11 @@ static int scan_proc_bus_pci(int card_nu
+ 					   card_cnt, pcidev_tbl[chip_idx].part_name,
+ 					   port_base);
+ 				if (irq == 0  || irq == 255)
+-					printf(bogus_irq);
++					fputs(bogus_irq, stdout);
+ 				if (port_base)
+ 					pcidev_tbl[chip_idx].diag_func(0,0,port_base, i);
+ 				else
+-					printf(bogus_iobase);
++					fputs(bogus_iobase, stdout);
+ 				break;
+ 			}
+ 		}
+@@ -419,7 +419,7 @@ static int scan_proc_pci(int card_num)
+ 							pcidev_tbl[chip_idx].diag_func
+ 								(vendor_id, device_id, port_base, chip_idx);
+ 						else
+-							printf(bogus_iobase);
++							fputs(bogus_iobase, stdout);
+ 					}
+ 				}
+ 			}
+@@ -839,7 +839,7 @@ static char davicom_msg[] =
+ static void myson_eeprom(unsigned short *ee_data)
+ {
+ 	if (ee_data[9] == 0x0103) {
+-		printf(davicom_msg);
++		fputs(davicom_msg, stdout);
+ 		printf("  The station address for this adapter may be "
+ 			   "'-H 00:C0:B4:%2.2x:%2.2x:%2.2x'\n",
+ 			   ee_data[11] >> 8, ee_data[12] & 0xff, ee_data[12] >> 8);
+--- diag-ether/natsemi-diag.c.formatsec	2013-02-05 18:39:15.358690399 +0100
++++ diag-ether/natsemi-diag.c	2013-02-05 18:40:24.494982522 +0100
+@@ -241,12 +241,12 @@ main(int argc, char **argv)
+ 			errflag++;
+ 		}
+ 	if (errflag) {
+-		fprintf(stderr, usage_msg);
++		fputs(usage_msg, stderr);
+ 		return 3;
+ 	}
+ 
+ 	if (verbose || show_version)
+-		printf(version_msg);
++		fputs(version_msg, stdout);
+ 
+ 	if (chip_type < 0
+ 		|| chip_type >= sizeof(pcidev_tbl)/sizeof(pcidev_tbl[0]) - 1) {
+@@ -334,11 +334,11 @@ static int scan_proc_bus_pci(int card_nu
+ 					   card_cnt, pcidev_tbl[chip_idx].part_name,
+ 					   port_base);
+ 				if (irq == 0  || irq == 255)
+-					printf(bogus_irq);
++					fputs(bogus_irq, stdout);
+ 				if (port_base)
+ 					pcidev_tbl[chip_idx].diag_func(0,0,port_base, i);
+ 				else
+-					printf(bogus_iobase);
++					fputs(bogus_iobase, stdout);
+ 				break;
+ 			}
+ 		}
+@@ -422,7 +422,7 @@ static int scan_proc_pci(int card_num)
+ 							pcidev_tbl[chip_idx].diag_func
+ 								(vendor_id, device_id, port_base, chip_idx);
+ 						else
+-							printf(bogus_iobase);
++							fputs(bogus_iobase, stdout);
+ 					}
+ 				}
+ 			}
+--- diag-ether/ne2k-pci-diag.c.formatsec	2013-02-05 17:53:04.133099803 +0100
++++ diag-ether/ne2k-pci-diag.c	2013-02-05 17:57:35.138298309 +0100
+@@ -191,12 +191,12 @@ main(int argc, char **argv)
+ 			errflag++;
+ 		}
+ 	if (errflag) {
+-		fprintf(stderr, usage_msg);
++		fputs(usage_msg, stderr);
+ 		return 3;
+ 	}
+ 
+ 	if (verbose || show_version)
+-		printf(version_msg);
++		fputs(version_msg, stdout);
+ 
+ 	if (chip_type < 0
+ 		|| chip_type >= sizeof(pcidev_tbl)/sizeof(pcidev_tbl[0]) - 1) {
+@@ -284,11 +284,11 @@ static int scan_proc_bus_pci(int card_nu
+ 					   card_cnt, pcidev_tbl[chip_idx].part_name,
+ 					   port_base);
+ 				if (irq == 0  || irq == 255)
+-					printf(bogus_irq);
++					fputs(bogus_irq, stdout);
+ 				if (port_base)
+ 					pcidev_tbl[chip_idx].diag_func(0,0,port_base, i);
+ 				else
+-					printf(bogus_iobase);
++					fputs(bogus_iobase, stdout);
+ 				break;
+ 			}
+ 		}
+@@ -372,7 +372,7 @@ static int scan_proc_pci(int card_num)
+ 							pcidev_tbl[chip_idx].diag_func
+ 								(vendor_id, device_id, port_base, chip_idx);
+ 						else
+-							printf(bogus_iobase);
++							fputs(bogus_iobase, stdout);
+ 					}
+ 				}
+ 			}
+@@ -831,12 +831,12 @@ static void do_ne2k_eeprom(long ioaddr,
+ 		return;
+ 	} else {
+ 		if (show_eeprom)
+-			printf(unknown_eeprom_message);
++			fputs(unknown_eeprom_message, stdout);
+ 		return;
+ 	}
+ 
+ 	if (emergency_rewrite  &&  ! (capabilities & (WINBOND_EE)))
+-		fprintf(stderr, no_rewrite_msg);
++		fputs(no_rewrite_msg, stderr);
+ 	if (emergency_rewrite  &&  ! set_hwaddr)
+ 		fprintf(stderr, "*** Emergency EEPROM rewrite is only valid when you"
+ 				" also specify a new\n"
+--- diag-ether/ns820-diag.c.formatsec	2013-02-05 18:43:09.174090379 +0100
++++ diag-ether/ns820-diag.c	2013-02-05 18:44:33.913631305 +0100
+@@ -236,12 +236,12 @@ main(int argc, char **argv)
+ 			errflag++;
+ 		}
+ 	if (errflag) {
+-		fprintf(stderr, usage_msg);
++		fputs(usage_msg, stderr);
+ 		return 3;
+ 	}
+ 
+ 	if (verbose || show_version)
+-		printf(version_msg);
++		fputs(version_msg, stdout);
+ 
+ 	if (chip_type < 0
+ 		|| chip_type >= sizeof(pcidev_tbl)/sizeof(pcidev_tbl[0]) - 1) {
+@@ -329,11 +329,11 @@ static int scan_proc_bus_pci(int card_nu
+ 					   card_cnt, pcidev_tbl[chip_idx].part_name,
+ 					   port_base);
+ 				if (irq == 0  || irq == 255)
+-					printf(bogus_irq);
++					fputs(bogus_irq, stdout);
+ 				if (port_base)
+ 					pcidev_tbl[chip_idx].diag_func(0,0,port_base, i);
+ 				else
+-					printf(bogus_iobase);
++					fputs(bogus_iobase, stdout);
+ 				break;
+ 			}
+ 		}
+@@ -417,7 +417,7 @@ static int scan_proc_pci(int card_num)
+ 							pcidev_tbl[chip_idx].diag_func
+ 								(vendor_id, device_id, port_base, chip_idx);
+ 						else
+-							printf(bogus_iobase);
++							fputs(bogus_iobase, stdout);
+ 					}
+ 				}
+ 			}
+--- diag-ether/pci-config.c.formatsec	2013-02-05 17:52:43.883209505 +0100
++++ diag-ether/pci-config.c	2013-02-05 17:58:00.174829341 +0100
+@@ -150,7 +150,7 @@ int main(int argc, char **argv)
+ 	}
+ 
+ 	if (verbose)
+-		printf(version_msg);
++		fputs(version_msg, stdout);
+ 
+ 	/* Get access to all of I/O space. */
+ 	if (iopl(3) < 0) {
+--- diag-ether/pcnet-diag.c.formatsec	2013-02-05 18:43:20.490695695 +0100
++++ diag-ether/pcnet-diag.c	2013-02-05 18:45:39.963273483 +0100
+@@ -199,12 +199,12 @@ main(int argc, char **argv)
+ 			errflag++;
+ 		}
+ 	if (errflag) {
+-		fprintf(stderr, usage_msg);
++		fputs(usage_msg, stderr);
+ 		return 3;
+ 	}
+ 
+ 	if (verbose || show_version)
+-		printf(version_msg);
++		fputs(version_msg, stdout);
+ 
+ 	if (chip_type < 0
+ 		|| chip_type >= sizeof(pcidev_tbl)/sizeof(pcidev_tbl[0]) - 1) {
+@@ -291,11 +291,11 @@ static int scan_proc_bus_pci(int card_nu
+ 					   card_cnt, pcidev_tbl[chip_idx].part_name,
+ 					   port_base);
+ 				if (irq == 0  || irq == 255)
+-					printf(bogus_irq);
++					fputs(bogus_irq, stdout);
+ 				if (port_base)
+ 					pcidev_tbl[chip_idx].diag_func(0,0,port_base, i);
+ 				else
+-					printf(bogus_iobase);
++					fputs(bogus_iobase, stdout);
+ 				break;
+ 			}
+ 		}
+@@ -379,7 +379,7 @@ static int scan_proc_pci(int card_num)
+ 							pcidev_tbl[chip_idx].diag_func
+ 								(vendor_id, device_id, port_base, chip_idx);
+ 						else
+-							printf(bogus_iobase);
++							fputs(bogus_iobase, stdout);
+ 					}
+ 				}
+ 			}
+--- diag-ether/rtl8139-diag.c.formatsec	2013-02-05 18:46:13.223093299 +0100
++++ diag-ether/rtl8139-diag.c	2013-02-05 18:47:10.689448644 +0100
+@@ -260,12 +260,12 @@ main(int argc, char **argv)
+ 			errflag++;
+ 		}
+ 	if (errflag) {
+-		fprintf(stderr, usage_msg);
++		fputs(usage_msg, stderr);
+ 		return 3;
+ 	}
+ 
+ 	if (verbose || show_version)
+-		printf(version_msg);
++		fputs(version_msg, stdout);
+ 
+ 	if (chip_type < 0
+ 		|| chip_type >= sizeof(pcidev_tbl)/sizeof(pcidev_tbl[0]) - 1) {
+@@ -353,11 +353,11 @@ static int scan_proc_bus_pci(int card_nu
+ 					   card_cnt, pcidev_tbl[chip_idx].part_name,
+ 					   port_base);
+ 				if (irq == 0  || irq == 255)
+-					printf(bogus_irq);
++					fputs(bogus_irq, stdout);
+ 				if (port_base)
+ 					pcidev_tbl[chip_idx].diag_func(0,0,port_base, i);
+ 				else
+-					printf(bogus_iobase);
++					fputs(bogus_iobase, stdout);
+ 				break;
+ 			}
+ 		}
+@@ -441,7 +441,7 @@ static int scan_proc_pci(int card_num)
+ 							pcidev_tbl[chip_idx].diag_func
+ 								(vendor_id, device_id, port_base, chip_idx);
+ 						else
+-							printf(bogus_iobase);
++							fputs(bogus_iobase, stdout);
+ 					}
+ 				}
+ 			}
+--- diag-ether/starfire-diag.c.formatsec	2013-02-05 18:47:39.605958657 +0100
++++ diag-ether/starfire-diag.c	2013-02-05 18:48:47.485590921 +0100
+@@ -193,12 +193,12 @@ main(int argc, char **argv)
+ 			errflag++;
+ 		}
+ 	if (errflag) {
+-		fprintf(stderr, usage_msg);
++		fputs(usage_msg, stderr);
+ 		return 3;
+ 	}
+ 
+ 	if (verbose || show_version)
+-		printf(version_msg);
++		fputs(version_msg, stdout);
+ 
+ 	if (chip_type < 0
+ 		|| chip_type >= sizeof(pcidev_tbl)/sizeof(pcidev_tbl[0]) - 1) {
+@@ -284,11 +284,11 @@ static int scan_proc_bus_pci(int card_nu
+ 					   card_cnt, pcidev_tbl[chip_idx].part_name,
+ 					   port_base);
+ 				if (irq == 0  || irq == 255)
+-					printf(bogus_irq);
++					fputs(bogus_irq, stdout);
+ 				if (port_base)
+ 					pcidev_tbl[chip_idx].diag_func(0,0,port_base, i);
+ 				else
+-					printf(bogus_iobase);
++					fputs(bogus_iobase, stdout);
+ 				break;
+ 			}
+ 		}
+@@ -371,7 +371,7 @@ static int scan_proc_pci(int card_num)
+ 							pcidev_tbl[chip_idx].diag_func
+ 								(vendor_id, device_id, port_base, chip_idx);
+ 						else
+-							printf(bogus_iobase);
++							fputs(bogus_iobase, stdout);
+ 					}
+ 				}
+ 			}
+--- diag-ether/tulip-diag.c.formatsec	2013-02-05 20:26:21.067743981 +0100
++++ diag-ether/tulip-diag.c	2013-02-05 20:27:44.723957443 +0100
+@@ -308,12 +308,12 @@ main(int argc, char **argv)
+ 			errflag++;
+ 		}
+ 	if (errflag) {
+-		fprintf(stderr, usage_msg);
++		fputs(usage_msg, stderr);
+ 		return 3;
+ 	}
+ 
+ 	if (verbose || show_version)
+-		printf(version_msg);
++		fputs(version_msg, stdout);
+ 
+ 	if (chip_type < 0
+ 		|| chip_type >= sizeof(pcidev_tbl)/sizeof(pcidev_tbl[0]) - 1) {
+@@ -401,11 +401,11 @@ static int scan_proc_bus_pci(int card_nu
+ 					   card_cnt, pcidev_tbl[chip_idx].part_name,
+ 					   port_base);
+ 				if (irq == 0  || irq == 255)
+-					printf(bogus_irq);
++					fputs(bogus_irq, stdout);
+ 				if (port_base)
+ 					pcidev_tbl[chip_idx].diag_func(0,0,port_base, i);
+ 				else
+-					printf(bogus_iobase);
++					fputs(bogus_iobase, stdout);
+ 				break;
+ 			}
+ 		}
+@@ -489,7 +489,7 @@ static int scan_proc_pci(int card_num)
+ 							pcidev_tbl[chip_idx].diag_func
+ 								(vendor_id, device_id, port_base, chip_idx);
+ 						else
+-							printf(bogus_iobase);
++							fputs(bogus_iobase, stdout);
+ 					}
+ 				}
+ 			}
+--- diag-ether/vortex-diag.c.formatsec	2013-02-05 20:27:58.147218056 +0100
++++ diag-ether/vortex-diag.c	2013-02-05 20:29:32.546706650 +0100
+@@ -315,12 +315,12 @@ main(int argc, char **argv)
+ 			errflag++;
+ 		}
+ 	if (errflag) {
+-		fprintf(stderr, usage_msg);
++		fputs(usage_msg, stderr);
+ 		return 3;
+ 	}
+ 
+ 	if (verbose || show_version)
+-		printf(version_msg);
++		fputs(version_msg, stdout);
+ 
+ 	if (chip_type < 0
+ 		|| chip_type >= sizeof(pcidev_tbl)/sizeof(pcidev_tbl[0]) - 1) {
+@@ -408,11 +408,11 @@ static int scan_proc_bus_pci(int card_nu
+ 					   card_cnt, pcidev_tbl[chip_idx].part_name,
+ 					   port_base);
+ 				if (irq == 0  || irq == 255)
+-					printf(bogus_irq);
++					fputs(bogus_irq, stdout);
+ 				if (port_base)
+ 					pcidev_tbl[chip_idx].diag_func(0,0,port_base, i);
+ 				else
+-					printf(bogus_iobase);
++					fputs(bogus_iobase, stdout);
+ 				break;
+ 			}
+ 		}
+@@ -496,7 +496,7 @@ static int scan_proc_pci(int card_num)
+ 							pcidev_tbl[chip_idx].diag_func
+ 								(vendor_id, device_id, port_base, chip_idx);
+ 						else
+-							printf(bogus_iobase);
++							fputs(bogus_iobase, stdout);
+ 					}
+ 				}
+ 			}
+--- diag-ether/winbond-diag.c.formatsec	2013-02-05 20:30:02.893208915 +0100
++++ diag-ether/winbond-diag.c	2013-02-05 20:31:08.916184572 +0100
+@@ -238,12 +238,12 @@ main(int argc, char **argv)
+ 			errflag++;
+ 		}
+ 	if (errflag) {
+-		fprintf(stderr, usage_msg);
++		fputs(usage_msg, stderr);
+ 		return 3;
+ 	}
+ 
+ 	if (verbose || show_version)
+-		printf(version_msg);
++		fputs(version_msg, stdout);
+ 
+ 	if (chip_type < 0
+ 		|| chip_type >= sizeof(pcidev_tbl)/sizeof(pcidev_tbl[0]) - 1) {
+@@ -331,11 +331,11 @@ static int scan_proc_bus_pci(int card_nu
+ 					   card_cnt, pcidev_tbl[chip_idx].part_name,
+ 					   port_base);
+ 				if (irq == 0  || irq == 255)
+-					printf(bogus_irq);
++					fputs(bogus_irq, stdout);
+ 				if (port_base)
+ 					pcidev_tbl[chip_idx].diag_func(0,0,port_base, i);
+ 				else
+-					printf(bogus_iobase);
++					fputs(bogus_iobase, stdout);
+ 				break;
+ 			}
+ 		}
+@@ -419,7 +419,7 @@ static int scan_proc_pci(int card_num)
+ 							pcidev_tbl[chip_idx].diag_func
+ 								(vendor_id, device_id, port_base, chip_idx);
+ 						else
+-							printf(bogus_iobase);
++							fputs(bogus_iobase, stdout);
+ 					}
+ 				}
+ 			}
+--- diag-ether/yellowfin-diag.c.formatsec	2013-02-05 20:32:05.379212019 +0100
++++ diag-ether/yellowfin-diag.c	2013-02-05 20:33:00.022249325 +0100
+@@ -192,12 +192,12 @@ main(int argc, char **argv)
+ 			errflag++;
+ 		}
+ 	if (errflag) {
+-		fprintf(stderr, usage_msg);
++		fputs(usage_msg, stderr);
+ 		return 3;
+ 	}
+ 
+ 	if (verbose || show_version)
+-		printf(version_msg);
++		fputs(version_msg, stdout);
+ 
+ 	if (chip_type < 0
+ 		|| chip_type >= sizeof(pcidev_tbl)/sizeof(pcidev_tbl[0]) - 1) {
+@@ -283,11 +283,11 @@ static int scan_proc_bus_pci(int card_nu
+ 					   card_cnt, pcidev_tbl[chip_idx].part_name,
+ 					   port_base);
+ 				if (irq == 0  || irq == 255)
+-					printf(bogus_irq);
++					fputs(bogus_irq, stdout);
+ 				if (port_base)
+ 					pcidev_tbl[chip_idx].diag_func(0,0,port_base, i);
+ 				else
+-					printf(bogus_iobase);
++					fputs(bogus_iobase, stdout);
+ 				break;
+ 			}
+ 		}
+@@ -370,7 +370,7 @@ static int scan_proc_pci(int card_num)
+ 							pcidev_tbl[chip_idx].diag_func
+ 								(vendor_id, device_id, port_base, chip_idx);
+ 						else
+-							printf(bogus_iobase);
++							fputs(bogus_iobase, stdout);
+ 					}
+ 				}
+ 			}
